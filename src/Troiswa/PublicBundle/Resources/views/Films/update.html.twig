@@ -1,0 +1,103 @@
+{% extends
+
+'TroiswaPublicBundle::layout.html.twig'
+%}
+
+{% block titre %}
+    Mis à jour  film  {{ parent() }}
+{% endblock %}
+
+{% block body%}
+
+    {%for message in app.session.flashbag.get('info')  %}
+
+        <div class="alert alert_succes"> {{ message }}</div>
+    {% endfor %}
+    {#  {{form(formActeurs) }} #}
+    <br>
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            {{ form_start(formfilm, {'attr':{'valitade':'novalidate'}
+            }) }}
+
+            <div class="form-group">
+                {{ form_label(formfilm.titre) }}
+
+                {{ form_widget(formfilm.titre,{'attr': {'class':'form-control'}} )
+                }}
+
+                {{ form_errors(formfilm.titre) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(formfilm.synopsis) }}
+
+                {{ form_widget(formfilm.synopsis,{'attr': {'class':'form-control', 'placeholder':'mettre le synopsis'}} )
+                }}
+
+                {{ form_errors(formfilm.synopsis) }}
+            </div>
+
+
+            <div class="form-group">
+                {{ form_label(formfilm.dateCreation) }}
+
+                {{ form_widget(formfilm.dateCreation,{'attr': {'class':''}} )
+                }}
+
+                {{ form_errors(formfilm.dateCreation) }}
+            </div>
+
+
+            <div class="form-group">
+
+                {{ form_label(formfilm.spectateur) }}
+
+                {{ form_widget(formfilm.spectateur,{'attr': {'class':'', 'type':'select'}} )
+                }}
+
+                <div id="raty"></div>
+
+                {{ form_errors(formfilm.spectateur) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(formfilm.fichier) }}
+
+                {{ form_widget(formfilm.fichier,{'attr': {'class':'form-control'}} )
+                }}
+
+                {{ form_errors(formfilm.fichier) }}
+            </div>
+
+
+            <div class="form-group">
+                {{ form_widget(formfilm.valider,{'attr': {'class':'btn btn-primary'}} )
+                }}
+                {{ form_end(formfilm) }}
+            </div>
+
+
+        </div>
+    </div>
+
+
+{% endblock %}
+
+
+{% block javascript %}
+    <script src="{{ asset ("js/lib/jquery.raty.js")}}"></script>
+    <script>
+        $(document).ready(function()
+        {
+            $('#raty').raty(
+                    {
+                        path:"{{ app.request.basePath }}/js/lib/images",
+                        scoreName: "{{ formfilm.vars.name }}[spectateur]"
+                    });
+
+            $('#raty input').val(0)
+        })
+    </script>
+
+{% endblock %}

@@ -1,0 +1,111 @@
+{% extends
+
+'TroiswaPublicBundle::layout.html.twig'
+%}
+
+{% block titre %}
+    ajouter un acteur  {{ parent() }}
+{% endblock %}
+
+{% block body%}
+
+    {%for message in app.session.flashbag.get('info')  %}
+
+        <div class="alert alert_succes"> {{ message }}</div>
+    {% endfor %}
+    {#  {{form(formActeurs) }} #}
+    <br>
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            {{ form_start(formActeurs, {'attr':{'valitade':'novalidate'}
+            }) }}
+            {#
+
+
+                <form>
+                    {{ form_end(formActeurs) }}
+                </form>
+
+                {{ form_row(formActeurs.prenom) }}
+                {{ form_label(formActeurs.prenom) }}
+
+                <label>
+                    Prenom
+                </label>
+
+                {{ form_widget(formActeurs.prenom) }}
+
+            #}
+            <div class="form-group">
+                {{ form_label(formActeurs.prenom) }}
+
+                {{ form_widget(formActeurs.prenom,{'attr': {'class':'form-control'}} )
+                }}
+
+                {{ form_errors(formActeurs.prenom) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(formActeurs.nom) }}
+
+                {{ form_widget(formActeurs.nom,{'attr': {'class':'form-control', 'placeholder':'essai'}} )
+                }}
+
+                {{ form_errors(formActeurs.nom) }}
+            </div>
+
+
+            <div class="form-group">
+                {{ form_label(formActeurs.sexe) }}
+
+                {{ form_widget(formActeurs.sexe,{'attr': {'class':''}} )
+                }}
+
+                {{ form_errors(formActeurs.sexe) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(formActeurs.dateNaissance) }}
+
+                {{ form_widget(formActeurs.dateNaissance,{'attr': {'class':''}} )
+                }}
+
+                {{ form_errors(formActeurs.dateNaissance) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(formActeurs.biography, 'biographie') }}
+
+                {{ form_widget(formActeurs.biography,{'attr': {'class':'form-control'}} )
+                }}
+
+                {{ form_errors(formActeurs.biography) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(formActeurs.nationalite) }}
+
+                {{ form_widget(formActeurs.nationalite,{'attr': {'class':'form-control'}} )
+                }}
+                {{ form_errors(formActeurs.nationalite) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(formActeurs.fichier) }}
+
+                {{ form_widget(formActeurs.fichier,{'attr': {'class':'form-control'}} )
+                }}
+
+                {{ form_errors(formActeurs.fichier) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_widget(formActeurs.valider,{'attr': {'class':'btn btn-primary'}} )
+                }}
+                {{ form_end(formActeurs) }}
+            </div>
+
+        </div>
+    </div>
+
+
+{% endblock %}

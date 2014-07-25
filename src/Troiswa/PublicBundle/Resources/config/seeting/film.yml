@@ -1,0 +1,14 @@
+troiswa_public_films:
+    path:     /films/
+    defaults: { _controller: TroiswaPublicBundle:Film:films }
+
+troiswa_public_film:
+    path:     /films/{id}
+    defaults: { _controller: TroiswaPublicBundle:Film:film }
+    requirements:
+      id: \d+
+
+
+troiswa_public_categorie:
+    path:     /categorie/
+    defaults: { _controller: TroiswaPublicBundle:Categorie:liste }

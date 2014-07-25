@@ -1,0 +1,86 @@
+{% extends
+
+'TroiswaPublicBundle::layout.html.twig'
+%}
+
+{% block titre %}
+Les films {{ parent() }}
+{% endblock %}
+
+{% block body%}
+
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-lg-12">
+                <h1 class="page-header">One Column Portfolio
+                    <small>Showcase Your Work</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="{{ path('troiswa_public_homepage') }}">Menu principal</a>
+                    </li>
+                    <li class="active"> <a href="{{ path('troiswa_public_acteurs') }}"> Acteurs </a></li>
+                    <li class="active"> <a href="{{ path('troiswa_admin_film') }}"> Ajout d'un film </a></li>
+                </ol>
+            </div>
+
+        </div>
+
+        {% for film in films %}
+
+        <div class="row">
+
+            <div class="col-md-7">
+                <a href="portfolio-item.html">
+                    <img class="img-responsive" width="500" height="500" src="{{ asset( film.webPath) }}">
+                </a>
+            </div>
+
+            <div class="col-md-5">
+                <h3>{{ film.titre }}</h3>
+                <p>{{ film.synopsis }}</p>
+
+                {% if film.categorie %}
+                <p>{{ film.categorie.titre }} </p>
+                {% endif %}
+                <a class="btn btn-primary" href="{{ path('troiswa_public_film',{"id":film.id}) }}">En savoir plus <i class="fa fa-angle-right"></i></a>
+            </div>
+
+        </div>
+
+        <hr>
+        {% endfor %}
+
+
+        <hr>
+
+        <div class="row text-center">
+
+            <div class="col-lg-12">
+                <ul class="pagination">
+                    <li><a href="#">&laquo;</a>
+                    </li>
+                    <li class="active"><a href="#">1</a>
+                    </li>
+                    <li><a href="#">2</a>
+                    </li>
+                    <li><a href="#">3</a>
+                    </li>
+                    <li><a href="#">4</a>
+                    </li>
+                    <li><a href="#">5</a>
+                    </li>
+                    <li><a href="#">&raquo;</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /.container -->
+
+
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends
+
+'TroiswaPublicBundle::layout.html.twig'
+%}
+
+{% block titre %}
+    categorie  {{ parent() }}
+{% endblock %}
+
+{% block body%}
+
+
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-lg-12">
+                <h1 class="page-header">FAQ
+                    <small>Frequently Asked Questions</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="index.html">Home</a>
+                    </li>
+                    <li class="active">FAQ</li>
+                </ol>
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-12">
+
+                <div class="panel-group" id="accordion">
+
+
+                    {% for categorie in categories %}
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse-{{ loop.index }}">
+                                  {{ categorie.titre }}
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapse-{{ loop.index }}" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <ul>
+                        {% for film in categorie.films %}
+                            <li><a href="{{ path('troiswa_public_film',{"id":film.id}) }}">{{ film.titre }}</a></li>
+                        {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    {% endfor %}
+
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /.container -->
+
+    <div class="container">
+
+        <hr>
+
+
+
+{% endblock %}

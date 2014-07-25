@@ -1,0 +1,9 @@
+troiswa_public_acteurs:
+    path:     /acteurs/
+    defaults: { _controller: TroiswaPublicBundle:Acteurs:acteurs}
+
+troiswa_public_acteur:
+    path:     /acteur/{id}
+    defaults: { _controller: TroiswaPublicBundle:Acteurs:acteur}
+    requirements:
+       id: \d+

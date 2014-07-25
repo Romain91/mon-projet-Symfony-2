@@ -1,0 +1,114 @@
+{% extends
+
+'TroiswaPublicBundle::layout.html.twig'
+%}
+
+{% block titre %}
+    Le film {{ parent() }}
+{% endblock %}
+
+{% block body%}
+
+
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-lg-12">
+            <h1 class="page-header">Single Portfolio Item
+                <small>Explain Your Work</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="index.html">Home</a>
+                </li>
+                <li class="active"><a href="{{ path('troiswa_public_films') }}"> Films </a></li>
+                <li class="active"> <a href="{{ path('troiswa_admin_film_update', {'id' : film.id}) }}"> Mis à jour Film </a> </li>
+
+
+            </ol>
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-8">
+            <img class="img-responsive" src="{{ asset( film.webPath) }}">
+        </div>
+
+        <div class="col-md-4">
+            <h3>{{ film.titre }}</h3>
+            <p>{{ film.synopsis }}</p>
+
+
+            {% if film.categorie %}
+            <h3>{{ film.categorie.titre }}</h3>
+            {% endif %}
+            <ul>
+                <li>Note :  <div id="raty" data-score="{{ film.spectateur }}">
+
+                </div></li>
+                <li>Dolor Sit Amet</li>
+                <li>Consectetur</li>
+                <li>Adipiscing Elit</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-lg-12">
+            <h3 class="page-header">Related Projects</h3>
+        </div>
+
+        <div class="col-sm-3 col-xs-6">
+            <a href="#">
+                <img class="img-responsive img-customer" src="http://placehold.it/500x300">
+            </a>
+        </div>
+
+        <div class="col-sm-3 col-xs-6">
+            <a href="#">
+                <img class="img-responsive img-customer" src="http://placehold.it/500x300">
+            </a>
+        </div>
+
+        <div class="col-sm-3 col-xs-6">
+            <a href="#">
+                <img class="img-responsive img-customer" src="http://placehold.it/500x300">
+            </a>
+        </div>
+
+        <div class="col-sm-3 col-xs-6">
+            <a href="#">
+                <img class="img-responsive img-customer" src="http://placehold.it/500x300">
+            </a>
+        </div>
+
+    </div>
+
+</div>
+<!-- /.container -->
+
+
+{% endblock %}
+
+{% block javascript %}
+<script src="{{ asset ("js/lib/jquery.raty.js")}}"></script>
+<script>
+    $(document).ready(function()
+    {
+        $('#raty').raty(
+        {
+            path:"{{ app.request.basePath }}/js/lib/images",
+            readOnly: true,
+            score: function() {
+                return $(this).attr('data-score');
+            }
+        });
+    })
+</script>
+
+{% endblock %}

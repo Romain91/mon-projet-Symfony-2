@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="fr" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Compétence</title>
+</head>
+<body>
+{% for comp, info in competences %}
+    <p>
+{{ comp }} : {{ info.note }}
+    <input data-max="10" data-fgColor="{{info.couleur }}" type="text" value="{{info.note }}" class="dial">
+    </p>
+{% endfor %}
+
+
+
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="{{ asset('js/jquery.knob.js') }}"></script>
+<script>
+    $(document).ready(function()
+    {
+        $(".dial").knob();
+    });
+</script>
+</body>
+</html>
